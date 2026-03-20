@@ -1,4 +1,4 @@
-Calculator Project
+ Calculator Project
 
 A calculator project developed incrementally, starting with a Java implementation and later to be ported to Arduino C++ to explore expression parsing and embedded systems design.
 
@@ -46,12 +46,12 @@ How to Run
 
 Java v1.0
 
-	1.	Compile: javac calculatorProject.java
+	1.	Compile: java calculatorProject.java
 	2.	Run: java calculatorProject
 	3.	Enter a value, then follow prompts entering operators and numbers, use = to get the final result
 
 Java v1.1
 
-	1.	Compile: javac calculatorProject.java
+	1.	Compile: java calculatorProject.java
 	2.	Run: java calculatorProject
 	3.	Enter a full RPN expression when prompted, for example: 3 5 2 * +
