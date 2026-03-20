@@ -1,32 +1,57 @@
-# Calculator Project
-Calculator project developed incrementally, starting with a Java implementation and later ported to Arduino C++ to explore expression parsing and embedded systems design.
+Calculator Project
 
-## Versioning Strategy
-Each version is implemented in both Java and Arduino C++.
-The goal is to preserve identical calculator behavior while porting logic between languages.
+A calculator project developed incrementally, starting with a Java implementation and later to be ported to Arduino C++ to explore expression parsing and embedded systems design.
 
-### Java Versions
+Versioning Strategy
 
-#### v1.0
-- Left-to-right evaluation
-- Supports +, -, *, /
-- No operator precedence (PEMDAS not implemented)
+Each version is implemented in both Java and Arduino C++. The goal is to preserve identical calculator behavior while porting logic between languages.
 
-#### v2.0 (Planned)
-- Java calculator with operator precedence (* and / before + and -)
+Java Versions
 
-### Arduino Versions
+v1.0 — Basic Calculator
 
-#### v1.0
-- Folder `arduino/v1/` created
-- Empty `calculator_serial.ino` added as a placeholder
-- Prepares repository for future Arduino C++ implementation
+	∙	Accepts sequential inputs (number → operator → number) until = is pressed
+	∙	Left-to-right evaluation with no operator precedence
+	∙	Supports +, -, *, /
+	∙	Division by zero handling
+	∙	Each operation (addition, subtraction, multiplication, division) implemented as a separate static method
 
-#### v2.0 (Planned)
-- Arduino port mirroring Java v2 logic
-- Uses Serial input/output for expressions
+v1.1 — RPN Calculator
 
-## How to Run Java v1
-1. Compile the Java file
-2. Run the program
-3. Enter numbers and operators interactively in the console. Use `=` to see the final result.
+	∙	Accepts a full RPN (Reverse Polish Notation) expression in a single line (e.g., 3 5 2 * +)
+	∙	Evaluates using a stack-based algorithm via java.util.Stack
+	∙	Supports +, -, *, /
+	∙	Division by zero handling
+	∙	Error handling for malformed or invalid expressions
+
+v2.0 (Planned)
+
+	∙	Infix expression support with proper operator precedence (* and / before + and -)
+	∙	Implemented using the Shunting-Yard algorithm
+	∙	Will accept natural math expressions (e.g., 3 + 5 * 2)
+
+Arduino Versions
+
+v1.0
+
+	∙	Project scaffold created under arduino/v1/
+	∙	Placeholder calculator_serial.ino added for future C++ implementation
+
+v2.0 (Planned)
+
+	∙	Arduino port mirroring Java v2.0 logic
+	∙	Serial input/output for expressions
+
+How to Run
+
+Java v1.0
+
+	1.	Compile: javac calculatorProject.java
+	2.	Run: java calculatorProject
+	3.	Enter a value, then follow prompts entering operators and numbers, use = to get the final result
+
+Java v1.1
+
+	1.	Compile: javac calculatorProject.java
+	2.	Run: java calculatorProject
+	3.	Enter a full RPN expression when prompted, for example: 3 5 2 * +
