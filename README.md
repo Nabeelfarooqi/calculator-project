@@ -1,9 +1,7 @@
  Calculator Project
-
 A calculator project developed incrementally, starting with a Java implementation and later to be ported to Arduino C++ to explore expression parsing and embedded systems design.
 
  Versioning Strategy
-
 Each version is implemented in both Java and Arduino C++. The goal is to preserve identical calculator behavior while porting logic between languages.
 
 ---
@@ -24,10 +22,16 @@ Each version is implemented in both Java and Arduino C++. The goal is to preserv
 - Division by zero handling
 - Error handling for malformed or invalid expressions
 
+ v1.2 — Shunting-Yard Infix Calculator
+- Accepts natural infix expressions (e.g., 3 * 2 + 5)
+- Converts infix to postfix using the Shunting-Yard algorithm
+- Proper operator precedence (* and / before + and -)
+- Parenthesis support (e.g., ( 3 + 5 ) * 2)
+- Evaluates converted postfix using the v1.1 stack-based RPN evaluator
+- Note: tokens must be space-separated
+
  v2.0 (Planned)
-- Infix expression support with proper operator precedence (* and / before + and -)
-- Implemented using the Shunting-Yard algorithm
-- Will accept natural math expressions (e.g., 3 + 5 * 2)
+- TBD
 
 ---
 
@@ -38,7 +42,7 @@ Each version is implemented in both Java and Arduino C++. The goal is to preserv
 - Placeholder calculator_serial.ino added for future C++ implementation
 
  v2.0 (Planned)
-- Arduino port mirroring Java v2.0 logic
+- Arduino port mirroring Java v1.2 logic
 - Serial input/output for expressions
 
 ---
@@ -55,11 +59,17 @@ Each version is implemented in both Java and Arduino C++. The goal is to preserv
 2. Run: java calculatorProject
 3. Enter a full RPN expression when prompted, for example: 3 5 2 * +
 
+ Java v1.2
+1. Compile: javac calculatorProject.java
+2. Run: java calculatorProject
+3. Enter a full infix expression when prompted, for example: 3 * ( 2 + 5 )
+4. Note: separate all tokens with spaces
+
 ---
 
  Project Structure
-
 calculatorProject/
 - java/v1.0/calculatorProject.java
 - java/v1.1/calculatorProject.java
+- java/v1.2/calculatorProject.java
 - arduino/v1/calculator_serial.ino
