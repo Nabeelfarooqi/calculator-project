@@ -30,6 +30,11 @@ Each version is implemented in both Java and Arduino C++. The goal is to preserv
 - Evaluates converted postfix using the v1.1 stack-based RPN evaluator
 - Note: tokens must be space-separated
 
+ v1.2.1 — Exponent Operator
+- Adds ^ (exponentiation) operator
+- Implemented as right-associative (e.g., 2 ^ 3 ^ 2 = 512)
+- Use parentheses to force left-to-right (e.g., ( 2 ^ 3 ) ^ 2 = 64)
+
  v2.0 (Planned)
 - TBD
 
@@ -65,6 +70,12 @@ Each version is implemented in both Java and Arduino C++. The goal is to preserv
 3. Enter a full infix expression when prompted, for example: 3 * ( 2 + 5 )
 4. Note: separate all tokens with spaces
 
+ Java v1.2.1
+1. Compile: javac calculatorProject.java
+2. Run: java calculatorProject
+3. Enter a full infix expression when prompted, for example: 2 ^ 3 ^ 2
+4. Note: separate all tokens with spaces
+
 ---
 
  Project Structure
@@ -72,4 +83,5 @@ calculatorProject/
 - java/v1.0/calculatorProject.java
 - java/v1.1/calculatorProject.java
 - java/v1.2/calculatorProject.java
+- java/v1.2.1/calculatorProject.java
 - arduino/v1/calculator_serial.ino
