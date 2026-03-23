@@ -12,6 +12,8 @@ public class calculatorProject
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter an RPN expression (e.g., 3 5 2 * +):");
+        System.out.println("Seperate all tokens with spaces.");
+
 
 
         String userInput = scanner.nextLine();
