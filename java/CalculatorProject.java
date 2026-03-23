@@ -36,7 +36,10 @@ public class CalculatorProject
         Stack<Double> stack = new Stack<>();
 
         for(String token : tokens){
-            if(isOperator(token)){
+            if(token.equals("!")) {
+                double a = stack.pop();
+                stack.push(factorial(a));
+            } else if(isOperator(token)){
                 double b = stack.pop();
                 double a = stack.pop();
                 stack.push(applyOperator(a, b, token));
@@ -45,6 +48,12 @@ public class CalculatorProject
             }
         }
         return stack.pop();
+    }
+
+    private static double factorial(double n) {
+        if (n < 0) throw new ArithmeticException("Factorial of negative number");
+        if (n == 0 || n == 1) return 1;
+        return n * factorial(n - 1);
     }
 
     private static Double applyOperator(double a, double b, String token) {
@@ -71,8 +80,8 @@ public class CalculatorProject
 
         String[] tokens = expression.split(" ");
 
-        for (String token : tokens){
-            if(isOperator(token)) {
+        for (String token : tokens) {
+            if (isOperator(token)) {
                 while (!operatorStack.isEmpty()
                         && isOperator(operatorStack.peek())
                         && (PRECEDENCE.get(operatorStack.peek()) > PRECEDENCE.get(token)
@@ -80,7 +89,9 @@ public class CalculatorProject
                     output.append(operatorStack.pop()).append(" ");
                 }
                 operatorStack.push(token);
-            } else if (token.equals("(")) {
+            } else if (token.equals("!")){
+                output.append("!").append(" ");
+            }else if (token.equals("(")) {
                 operatorStack.push(token);
             } else if (token.equals(")")) {
                 while (!operatorStack.isEmpty() && !operatorStack.peek().equals("(")) {
