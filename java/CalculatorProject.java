@@ -1,7 +1,4 @@
-import java.util.Stack;
-import java.util.Scanner;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 public class CalculatorProject
 {
@@ -16,15 +13,14 @@ public class CalculatorProject
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter an infix expression (e.g., 3 * 2 + 5 ^ 2):");
-        System.out.println("Separate all tokens with spaces.");
+        System.out.println("Enter an infix expression (e.g., 3*2+5^2):");
 
         String userInput = scanner.nextLine();
 
         try{
             String postfix = shuntingYard(userInput);
             double result = evaluateRPN(postfix.split(" "));
-            System.out.println("Result: " + (result % 1 == 0 ? String.valueOf((int) result) : String.valueOf(result)));
+            System.out.println("Result: " + (result % 1 == 0 ? String.valueOf((long) result) : String.valueOf(result)));
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -64,13 +60,34 @@ public class CalculatorProject
         return token.equals("+") || token.equals("-") ||
                 token.equals("*") || token.equals("/") || token.equals("^");
     }
+    private static List<String> tokenize (String input){
+        List<String> tokens = new ArrayList<>();
+        StringBuilder current = new StringBuilder();
+
+        for (int i = 0; i<input.length(); i++){
+            char c = input.charAt(i);
+
+            if(Character.isWhitespace(c)) continue;
+
+            if(Character.isDigit(c) || c == '.') {
+                current.append(c);
+            } else {
+                if (current.length() > 0) {
+                    tokens.add(current.toString());
+                    current.setLength(0);
+                }
+                tokens.add(String.valueOf(c));
+            }
+        }
+        if(current.length() > 0) tokens.add(current.toString());
+        return tokens;
+    }
 
     public static String shuntingYard(String expression){
         StringBuilder output = new StringBuilder();
         Stack<String> operatorStack = new Stack<>();
 
-        String[] tokens = expression.split(" ");
-
+        List<String> tokens = tokenize(expression);
         for (String token : tokens){
             if(isOperator(token)) {
                 while (!operatorStack.isEmpty()
